@@ -1,0 +1,38 @@
+---GraphColoringProblem.py---
+
+graph = GraphColoringProblem.read("dataset1.pkl"): pickle dosyasına kaydedilmiş graph verisini okur ve
+dictionary döner.
+Örneğin:
+{0: {3, 5, 6, 7, 9},
+1: {2, 4, 5, 7, 8, 9},
+2: {1, 3, 4, 5, 6, 7, 8, 9},
+3: {0, 2, 7},
+4: {8, 1, 2, 7},
+5: {0, 1, 2, 7},
+6: {0, 2, 7},
+7: {0, 1, 2, 3, 4, 5, 6},
+8: {1, 2, 4, 9},
+9: {0, 1, 2, 8}}
+
+rastgeleGraph = GraphColoringProblem.generate_map(node_size=3, path=None, seed=1234):
+Rastgele renklendirilmemiş bir graph datası oluşturur.
+Seed'i aynı tuttuğumuz sürece hep aynı graph'ı elde ederiz.
+Girilen paramatrelerle oluşacak graph:
+{0: {1, 2}, 1: {0}, 2: {0}}
+
+objectiveVal = GraphColoringProblem.objective(solution): Graph'daki renklere göre toplam skoru bulur.
+
+problem=GraphColoringProblem(graph): Renklendirilmemiş graph datasını alarak yeni bir problem objesi yaratır.
+
+problem.random_solution: Her çağrıldığında farklı rastgele bir solution dictionary döner.
+Örneğin:
+{0: 'Yellow', 1: 'Green', 2: 'Yellow', 3: 'Blue', 4: 'Blue', 5: 'Blue', 6: 'Blue', 7: 'Red', 8: 'Red', 9: 'Blue'}
+
+problem.clone: problem.graph'ın kopyasını tutar.
+
+problem.save("C:/Users/Engin/Desktop/graph_dataset_engin.pkl"): problem.graph'ı pkl dosyası olarak kaydeder.
+
+problem.draw(solution, "Graph problemi çözüm grafiği"): Renklendiriliş grafiği elde eder ve gösterir.
+
+problem.feasibility(solution): Çözümün uygun olup olmadığını söyler. Birbirine bağlı aynı renkte 2 node varsa
+false döner.
